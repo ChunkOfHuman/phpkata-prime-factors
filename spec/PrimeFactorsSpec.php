@@ -33,4 +33,9 @@ class PrimeFactorsSpec extends ObjectBehavior
         $this->factorize(3)->shouldReturn([3]);
     }
 
+    function it_factorizes_4_as_2_2()
+    {
+        $this->factorize(4)->shouldReturn([2,2]);
+    }
+
 }

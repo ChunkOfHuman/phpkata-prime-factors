@@ -9,10 +9,19 @@ class PrimeFactors
      */
     public function factorize($num)
     {
-        if($num % 3 == 0) return [3];
+        $factors = [];
 
-        if($num % 2 == 0) return [2];
-        
-        return [];
+        while($num % 3 == 0)
+        {
+            $factors[] = 3;
+            $num /= 3;
+        }
+
+        while($num % 2 == 0){
+            $factors[] = 2;
+            $num /= 2;
+        }
+
+        return $factors;
     }
 }
