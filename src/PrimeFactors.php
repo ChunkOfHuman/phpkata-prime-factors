@@ -11,13 +11,11 @@ class PrimeFactors
     {
         $factors = [];
 
-        for($prime = 2; $num > 1; $prime++)
+        for($divisor = 2; $num > 1; $divisor++)
         {
-            while($num % $prime == 0)
+            for(; $num % $divisor == 0; $num /= $divisor)
             {
-                $factors[] = $prime;
-
-                $num /= $prime;
+                $factors[] = $divisor;
             }
         }
 
