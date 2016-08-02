@@ -1,0 +1,12 @@
+{
+    "name": "paupenin/phpkata-prime-factors",
+    "type": "php kata",
+    "require": {},
+    "require-dev": {
+        "phpspec/phpspec": "^3.0"
+    },
+    "config": {
+        "bin-dir": "vendor/bin"
+    },
+    "autoload": {"psr-0": {"": "src"}}
+}
