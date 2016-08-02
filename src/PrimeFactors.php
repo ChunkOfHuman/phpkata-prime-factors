@@ -11,21 +11,14 @@ class PrimeFactors
     {
         $factors = [];
 
-        while($num % 2 == 0){
-            $factors[] = 2;
-            $num /= 2;
-        }
-
-        while($num % 3 == 0)
+        for($prime = 2; $num > 1; $prime++)
         {
-            $factors[] = 3;
-            $num /= 3;
-        }
+            while($num % $prime == 0)
+            {
+                $factors[] = $prime;
 
-        while($num % 5 == 0)
-        {
-            $factors[] = 5;
-            $num /= 5;
+                $num /= $prime;
+            }
         }
 
         return $factors;
