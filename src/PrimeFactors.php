@@ -21,4 +21,28 @@ class PrimeFactors
 
         return $factors;
     }
+
+    /**
+     * Returns Least common multiple for the given numbers
+     * @param  array $numbers
+     * @return integer
+     */
+    public function lcm( $numbers )
+    {
+        $factors = [];
+        foreach( $numbers as $num )
+        {
+            $factors[] = $this->factorize($num);
+        }
+
+        if( count($factors) > 1 )
+        {
+            $multiples = call_user_func_array('array_intersect', $factors);
+        }else{
+            $multiples = $factors[0];
+        }
+
+        return min( $multiples );
+    }
+    
 }

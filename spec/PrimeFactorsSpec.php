@@ -69,4 +69,28 @@ class PrimeFactorsSpec extends ObjectBehavior
     }
 
 
+
+    /**
+     * least common multiple tests
+     */
+    function it_calculates_lcm_for_single_number()
+    {
+      $this->lcm([90])->shouldReturn(2);
+    }
+
+    function it_calculates_lcm_for_15_21()
+    {
+        $this->lcm([15, 21])->shouldReturn(3);
+    }
+
+    function it_calculates_lcm_for_15_30_90()
+    {
+        $this->lcm([15, 30, 90])->shouldReturn(3);
+    }
+
+    function it_calculates_lcm_for_15_30_100()
+    {
+        $this->lcm([15, 30, 100])->shouldReturn(5);
+    }
+
 }
