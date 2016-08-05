@@ -33,7 +33,7 @@ class PrimeFactors
                        return $this->factorize($val);
                     }, $numbers);
 
-        // Get prime factors highest exponent value
+        // Get prime factors with highest exponent
         $highest = [];
         foreach($factors as $fac)
         {
@@ -64,22 +64,23 @@ class PrimeFactors
                      return $this->factorize($val);
                   }, $numbers);
 
-        // Get common prime factors for each occurrence
+        // Get common prime factors with common occurrences
         $common = array_count_values($factors[0]);
-        if( count($factors) > 1 ){
-          for($i = 1; $i < count($factors); $i++)
-          {
-              $curr = array_count_values($factors[$i]);
-              foreach($common as $num => $times){
-                 if( ! isset($curr[$num]) ){
-                    unset($common[$num]);
-                    continue;
-                 }
-                 if( $curr[$num] < $common[$num] ){
-                    $common[$num] = $curr[$num];
-                 }
-              }
-          }
+        for($i = 1; $i < count($factors); $i++)
+        {
+            $curr = array_count_values($factors[$i]);
+            foreach($common as $num => $times)
+            {
+               if( ! isset($curr[$num]) )
+               {
+                  unset($common[$num]);
+                  continue;
+               }
+               if( $curr[$num] < $common[$num] )
+               {
+                  $common[$num] = $curr[$num];
+               }
+            }
         }
 
         return array_reduce( array_keys($common),
