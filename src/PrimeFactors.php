@@ -33,6 +33,7 @@ class PrimeFactors
                        return $this->factorize($val);
                     }, $numbers);
 
+        // Get prime factors highest exponent value
         $highest = [];
         foreach($factors as $fac)
         {
@@ -53,24 +54,37 @@ class PrimeFactors
     }
 
     /**
-     * Returns Greater common divider for the given numbers
+     * Returns Greater common divisor for the given numbers
      * @param  array $numbers
      * @return integer
      */
     public function gcd( $numbers )
     {
-        if( count($numbers) == 1 ){
-            return $numbers[0];
-        }
-
         $factors = array_map(function($val){
                      return $this->factorize($val);
                   }, $numbers);
 
-        return array_reduce(
-                  call_user_func_array('array_intersect', $factors),
-                  function($prev, $next){
-                      return $prev * $next;
+        // Get common prime factors for each occurrence
+        $common = array_count_values($factors[0]);
+        if( count($factors) > 1 ){
+          for($i = 1; $i < count($factors); $i++)
+          {
+              $curr = array_count_values($factors[$i]);
+              foreach($common as $num => $times){
+                 if( ! isset($curr[$num]) ){
+                    unset($common[$num]);
+                    continue;
+                 }
+                 if( $curr[$num] < $common[$num] ){
+                    $common[$num] = $curr[$num];
+                 }
+              }
+          }
+        }
+
+        return array_reduce( array_keys($common),
+                  function($total, $num) use ($common){
+                      return $total * pow($num, $common[$num]);
                   }, 1 );
     }
 

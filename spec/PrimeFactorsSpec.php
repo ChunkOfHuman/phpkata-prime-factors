@@ -115,4 +115,14 @@ class PrimeFactorsSpec extends ObjectBehavior
     {
         $this->gcd([90, 40])->shouldReturn(10);
     }
+
+    function it_calculates_gcd_for_18_27()
+    {
+        $this->gcd([18, 27])->shouldReturn(9);
+    }
+
+    function it_calculates_gcd_for_20_50_120()
+    {
+        $this->gcd([20, 50, 120])->shouldReturn(10);
+    }
 }
