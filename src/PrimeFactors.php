@@ -30,16 +30,26 @@ class PrimeFactors
     public function lcm( $numbers )
     {
         $factors = array_map(function($val){
-                   return $this->factorize($val);
-                }, $numbers);
+                       return $this->factorize($val);
+                    }, $numbers);
 
-
-        if( count($factors) > 1 )
+        $highest = [];
+        foreach($factors as $fac)
         {
-            return min( call_user_func_array('array_intersect', $factors) );
+            $count = array_count_values($fac);
+            foreach($count as $num => $total)
+            {
+               if( ! isset($highest[$num]) OR $highest[$num] < $total)
+               {
+                  $highest[$num] = $total;
+               }
+            }
         }
 
-        return min( $factors[0] );
+        return array_reduce( array_keys($highest),
+                function($total, $num) use ($highest){
+                    return $total * pow($num, $highest[$num]);
+                }, 1);
     }
 
     /**

@@ -75,22 +75,32 @@ class PrimeFactorsSpec extends ObjectBehavior
      */
     function it_calculates_lcm_for_single_number()
     {
-      $this->lcm([90])->shouldReturn(2);
+      $this->lcm([90])->shouldReturn(90);
     }
 
     function it_calculates_lcm_for_15_21()
     {
-        $this->lcm([15, 21])->shouldReturn(3);
+        $this->lcm([15, 21])->shouldReturn(105);
+    }
+
+    function it_calculates_lcm_for_12_30()
+    {
+        $this->lcm([12, 30])->shouldReturn(60);
+    }
+
+    function it_calculates_lcm_for_24_300()
+    {
+        $this->lcm([24, 300])->shouldReturn(600);
     }
 
     function it_calculates_lcm_for_15_30_90()
     {
-        $this->lcm([15, 30, 90])->shouldReturn(3);
+        $this->lcm([15, 30, 90])->shouldReturn(90);
     }
 
     function it_calculates_lcm_for_15_30_100()
     {
-        $this->lcm([15, 30, 100])->shouldReturn(5);
+        $this->lcm([15, 30, 100])->shouldReturn(300);
     }
 
     /**
