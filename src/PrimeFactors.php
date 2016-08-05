@@ -29,20 +29,39 @@ class PrimeFactors
      */
     public function lcm( $numbers )
     {
-        $factors = [];
-        foreach( $numbers as $num )
-        {
-            $factors[] = $this->factorize($num);
-        }
+        $factors = array_map(function($val){
+                   return $this->factorize($val);
+                }, $numbers);
+
 
         if( count($factors) > 1 )
         {
-            $multiples = call_user_func_array('array_intersect', $factors);
-        }else{
-            $multiples = $factors[0];
+            return min( call_user_func_array('array_intersect', $factors) );
         }
 
-        return min( $multiples );
+        return min( $factors[0] );
     }
-    
+
+    /**
+     * Returns Greater common divider for the given numbers
+     * @param  array $numbers
+     * @return integer
+     */
+    public function gcd( $numbers )
+    {
+        if( count($numbers) == 1 ){
+            return $numbers[0];
+        }
+
+        $factors = array_map(function($val){
+                     return $this->factorize($val);
+                  }, $numbers);
+
+        return array_reduce(
+                  call_user_func_array('array_intersect', $factors),
+                  function($prev, $next){
+                      return $prev * $next;
+                  }, 1 );
+    }
+
 }

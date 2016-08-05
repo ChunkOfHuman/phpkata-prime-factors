@@ -93,4 +93,16 @@ class PrimeFactorsSpec extends ObjectBehavior
         $this->lcm([15, 30, 100])->shouldReturn(5);
     }
 
+    /**
+     * greatest common divisor tests
+     */
+    function it_calculates_gcd_for_single_number()
+    {
+        $this->gcd([90])->shouldReturn(90);
+    }
+
+    function it_calculates_gcd_for_90_40()
+    {
+        $this->gcd([90, 40])->shouldReturn(10);
+    }
 }
